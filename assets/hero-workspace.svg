@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="50%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#heroGrad)" rx="20"/>
+  <!-- Ambient glow circles -->
+  <circle cx="150" cy="120" r="140" fill="#6366f1" opacity="0.25"/>
+  <circle cx="680" cy="380" r="160" fill="#38bdf8" opacity="0.2"/>
+  <!-- Workspace desk illustration -->
+  <rect x="180" y="320" width="440" height="24" rx="8" fill="#e2e8f0"/>
+  <rect x="220" y="344" width="20" height="110" rx="4" fill="#64748b"/>
+  <rect x="560" y="344" width="20" height="110" rx="4" fill="#64748b"/>
+  <!-- Dual Monitor setup -->
+  <rect x="250" y="210" width="140" height="95" rx="6" fill="#0f172a"/>
+  <rect x="256" y="216" width="128" height="83" rx="4" fill="#38bdf8"/>
+  <line x1="320" y1="305" x2="320" y2="320" stroke="#64748b" stroke-width="8"/>
+  <rect x="410" y="210" width="140" height="95" rx="6" fill="#0f172a"/>
+  <rect x="416" y="216" width="128" height="83" rx="4" fill="#818cf8"/>
+  <line x1="480" y1="305" x2="480" y2="320" stroke="#64748b" stroke-width="8"/>
+  <!-- Desk accessories -->
+  <rect x="340" y="325" width="120" height="10" rx="4" fill="#334155"/>
+  <circle cx="485" cy="330" r="6" fill="#475569"/>
+  <!-- Plant pot -->
+  <polygon points="575,320 585,290 605,290 615,320" fill="#f59e0b"/>
+  <circle cx="595" cy="275" r="16" fill="#10b981"/>
+  <!-- Title / Motto in Hero graphic -->
+  <text x="400" y="90" fill="#ffffff" font-family="system-ui, sans-serif" font-size="34" font-weight="800" text-anchor="middle">SpaceHub Coworking</text>
+  <text x="400" y="130" fill="#c7d2fe" font-family="system-ui, sans-serif" font-size="18" text-anchor="middle">Ekosistem Kerja Produktif, Fleksibel & Terkoneksi</text>
+</svg>

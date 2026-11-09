@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="exGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#exGrad)" rx="16"/>
+  <!-- Jendela Panorama -->
+  <rect x="80" y="110" width="440" height="150" rx="8" fill="#1e3a5f" opacity="0.7"/>
+  <line x1="220" y1="110" x2="220" y2="260" stroke="#334155" stroke-width="4"/>
+  <line x1="380" y1="110" x2="380" y2="260" stroke="#334155" stroke-width="4"/>
+  <!-- Gedung di balik jendela -->
+  <rect x="120" y="160" width="30" height="100" fill="#0f2438"/>
+  <rect x="160" y="140" width="45" height="120" fill="#0b1b2b"/>
+  <rect x="240" y="130" width="60" height="130" fill="#0d2135"/>
+  <rect x="320" y="170" width="40" height="90" fill="#0f2438"/>
+  <rect x="400" y="150" width="50" height="110" fill="#0c1d2e"/>
+  <!-- Meja Direktur / Meeting 8 Pax -->
+  <ellipse cx="300" cy="300" rx="200" ry="40" fill="#475569"/>
+  <ellipse cx="300" cy="295" rx="190" ry="35" fill="#64748b"/>
+  <text x="300" y="65" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" text-anchor="middle">Executive Suite 8</text>
+  <text x="300" y="95" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="16" text-anchor="middle">Panorama Kota • TV 55" • Ruang Tamu Eksekutif</text>
+</svg>

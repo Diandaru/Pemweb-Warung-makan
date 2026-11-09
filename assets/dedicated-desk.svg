@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#dedGrad)" rx="16"/>
+  <!-- Meja dan Loker -->
+  <rect x="80" y="230" width="320" height="20" rx="4" fill="#e2e8f0"/>
+  <rect x="100" y="250" width="14" height="90" fill="#94a3b8"/>
+  <rect x="380" y="250" width="14" height="90" fill="#94a3b8"/>
+  <rect x="420" y="160" width="100" height="180" rx="8" fill="#334155"/>
+  <circle cx="440" cy="220" r="4" fill="#fbbf24"/>
+  <circle cx="440" cy="280" r="4" fill="#fbbf24"/>
+  <!-- Kursi Ergonomis -->
+  <rect x="190" y="210" width="100" height="20" rx="8" fill="#1e293b"/>
+  <rect x="230" y="140" width="20" height="70" rx="4" fill="#0f172a"/>
+  <path d="M 210 140 L 270 140 L 260 210 L 220 210 Z" fill="#475569"/>
+  <!-- Monitor Besar -->
+  <rect x="180" y="140" width="120" height="80" rx="6" fill="#090d16"/>
+  <rect x="185" y="145" width="110" height="70" rx="4" fill="#38bdf8"/>
+  <line x1="240" y1="220" x2="240" y2="230" stroke="#64748b" stroke-width="8"/>
+  <text x="300" y="70" fill="#ffffff" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" text-anchor="middle">Dedicated Desk Pro</text>
+  <text x="300" y="105" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="16" text-anchor="middle">Meja Pribadi Tetap • Loker Kunci • Akses 24/7</text>
+</svg>
