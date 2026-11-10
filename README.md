@@ -19,7 +19,7 @@ Warung Makan Berkah adalah aplikasi web berbasis PHP dinamis untuk usaha kuliner
 ---
 
 ## 3. Alur Website (USer Flow & Data Flow)
-   ┌─────────────────────────┐
+                       ┌─────────────────────────┐
                        │        Pengunjung       │
                        └────────────┬────────────┘
                                     │
@@ -35,7 +35,7 @@ Warung Makan Berkah adalah aplikasi web berbasis PHP dinamis untuk usaha kuliner
 ┌────────────────────────────────────────────────────────────────────────┐
 │                             functions.php                              │
 │  - getMenuUnggulan() -> Menyaring menu unggulan                        │
-│  - formatRupiah()    -> Format harga Rp                              │
+│  - formatRupiah()    -> Format harga Rp                                │
 │  - e()               -> Sanitasi Output Anti-XSS                       │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
