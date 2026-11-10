@@ -1,4 +1,4 @@
-# UTS Pemrograman Web - SpaceHub Workspace Solutions
+# UTS Pemrograman Web - Warung Makan Berkah
 
 Proyek Mini Individu Website Profil & Katalog Dinamis Berbasis PHP Dasar.
 
@@ -14,11 +14,40 @@ Proyek Mini Individu Website Profil & Katalog Dinamis Berbasis PHP Dasar.
 ---
 
 ## 2. Deskripsi Singkat Tema
-SpaceHub adalah platform katalog digital layanan penyewaan ruang kerja modern yang mencakup *coworking hot desk*, *dedicated desk*, *private office*, *meeting room*, hingga studio multimedia dan acara. Website ini dibangun untuk memudahkan calon penyewa menelusuri ketersediaan kapasitas ruang dan melihat estimasi biaya sewa secara transparan, bersih, dan langsung dari data array PHP tanpa database.
+Warung Makan Berkah adalah aplikasi web berbasis PHP dinamis untuk usaha kuliner UMKM. Website ini menyajikan informasi profil usaha, cerita komitmen, daftar menu favorit/unggulan, katalog menu lengkap (makanan utama, minuman, dan camilan), serta fitur pemesanan dan simulasi perhitungan total tagihan pembayaran secara transparan dan instan tanpa menggunakan database eksternal (menggunakan data array PHP).
 
 ---
 
-## 3. Cara Menjalankan di Localhost
+## 3. Alur Website (USer Flow & Data Flow)
+   ┌─────────────────────────┐
+                       │        Pengunjung       │
+                       └────────────┬────────────┘
+                                    │
+           ┌────────────────────────┴────────────────────────┐
+           ▼                                                 ▼
+┌──────────────────────┐                          ┌──────────────────────┐
+│      index.php       │                          │     katalog.php      │
+│   (Profil Usaha)     │                          │  (Katalog & Pesan)   │
+└──────────┬───────────┘                          └──────────┬───────────┘
+           │                                                 │
+           │  Mengambil Menu Unggulan                        │  Proses POST (Form Qty)
+           ▼                                                 ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                             functions.php                              │
+│  - getMenuUnggulan() -> Menyaring menu unggulan                        │
+│  - formatRupiah()    -> Format harga Rp                              │
+│  - e()               -> Sanitasi Output Anti-XSS                       │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │
+                                   │  Membaca Master Data
+                                   ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                                data.php                                │
+│  $daftarMenu = [Array Multidimensi Menu Kuliner (ID, Nama, Harga, dll)]│
+└────────────────────────────────────────────────────────────────────────┘
+
+
+## 4. Cara Menjalankan di Localhost
 
 Aplikasi ini tidak membutuhkan database (semua data tersimpan dalam array PHP) dan tidak menggunakan framework apa pun.
 
@@ -26,7 +55,7 @@ Aplikasi ini tidak membutuhkan database (semua data tersimpan dalam array PHP) d
 1. Buka terminal (Command Prompt / PowerShell / Terminal VS Code).
 2. Arahkan direktori aktif ke dalam folder proyek ini:
    ```bash
-   cd path/ke/tema-1-layanan-kerja
+   cd path/ke/tema-1-warung-makan
    ```
 3. Jalankan server lokal bawaan PHP:
    ```bash
@@ -38,43 +67,44 @@ Aplikasi ini tidak membutuhkan database (semua data tersimpan dalam array PHP) d
    ```
 
 ### Opsi B: Menggunakan XAMPP
-1. Salin (*copy*) folder `tema-1-layanan-kerja` ke direktori `htdocs` XAMPP Anda:
-   - Windows: `C:\xampp\htdocs\tema-1-layanan-kerja`
+1. Salin (*copy*) folder `tema-1-warung-makan ke direktori `htdocs` XAMPP Anda:
+   - Windows: `C:\xampp\htdocs\tema-1-warung-makan 
 2. Jalankan modul **Apache** pada XAMPP Control Panel.
 3. Buka browser dan buka:
    ```
-   http://localhost/tema-1-layanan-kerja/index.php
+   http://localhost/tema-1-warung-makan index.php
    ```
 
 ---
 
-## 4. Daftar Fitur & Penanggung Jawab File/Fungsi
+## 5. Daftar Fitur & Penanggung Jawab File/Fungsi
 
-| No | Fitur Utama | File Terkait | Fungsi / Logika Penangan | Keterangan |
-|:--:|:---|:---|:---|:---|
-| 1 | **Sanitasi Output Anti-XSS** | `functions.php` | `e()` | Membungkus `htmlspecialchars` agar setiap teks yang dirender ke browser aman dari injeksi script berbahaya. |
-| 2 | **Format Mata Uang Rupiah** | `functions.php` | `formatRupiah()` | Mengonversi integer menjadi format mata uang resmi (contoh: `Rp 50.000`). |
-| 3 | **Percabangan Status & Badge** | `functions.php`, `katalog.php` | `getBadgeStatus()` | Menggunakan sintaks modern PHP `match()` untuk memberi warna badge (hijau = Tersedia, merah = Penuh, kuning = Khusus Member). |
-| 4 | **Render Otomatis Foreach** | `katalog.php` | `foreach ($daftarRuangan as $ruang)` | Merender kartu ruangan secara dinamis dari array utama tanpa penulisan HTML berulang. |
-| 5 | **Hitung Ruangan Siap Pakai** | `functions.php`, `index.php`, `katalog.php` | `hitungRuanganTersedia()` | Menyaring data array dengan `array_filter()` untuk menghitung ruangan yang saat ini berstatus 'Tersedia'. |
-| 6 | **Ringkasan Total Kapasitas** | `functions.php`, `index.php`, `katalog.php` | `hitungTotalKapasitas()` | Menghitung total daya tampung orang dari seluruh ruangan yang terdaftar. |
-| 7 | **Ringkasan Rata-Rata Harga** | `functions.php`, `katalog.php` | `hitungRataRataHarga()` | Menghitung nilai rata-rata harga sewa dari data yang sedang ditampilkan. |
+No | Fitur Utama               | File Terkait | Fungsi / Logika Penangan | Keterangan
 
+1  |  Sanitasi Output Anti-XSS | functions.php |   e()                    | Mengamankan teks dari XSS dengan membungkus htmlspecialchars agar setiap teks yang dirender ke browser aman dari injeksi    script berbahaya.
+
+2  | Format Mata Uang Rupiah   | functions.php | formatRupiah()           | Format angka ke format Rupiah (contoh: Rp 20.000).
+
+3  | Filter Menu Unggulan      | functions.php, index.php | getMenuUnggulan() | Menyaring menu yang berstatus unggulan untuk di halaman profil (array_filter berdasarkan atribut unggulan === true).
+
+4  | Render Otomatis Foreach   | katalog.php, index.php   | foreach ($daftarMenu as $item)   | Merender kartu item menu secara dinamis dari array utama tanpa penulisan HTML berulang.
+
+5  | Kalkulasi Pesanan & Subtotal   | katalog.php  | foreach ($_POST['qty'] as $idMenu => $jumlahPorsi)  | Mengalkulasi subtotal porsi per item menu serta total akumulasi tagihan secara fleksibel.
+
+6  | Pesan Kondisional Status Pesanan | katalog.php   | if ($adaPesanan) ... else   | Menampilkan rincian pesanan jika porsi diisi atau menampilkan peringatan jika belum memilih menu.
 ---
 
-## 5. Daftar Fungsi Array Bawaan PHP yang Digunakan
+## 6. Daftar Fungsi Array Bawaan PHP yang Digunakan
 
-| No | Fungsi Bawaan Array | Letak File:Baris | Tujuan / Kegunaan dalam Proyek |
-|:--:|:---|:---|:---|
-| 1 | `count()` | `functions.php`, `index.php`, `katalog.php` | Menghitung jumlah total item ruangan kerja dan jumlah ruangan berstatus tersedia. |
-| 2 | `array_column()` | `functions.php` (`hitungTotalKapasitas`, `hitungRataRataHarga`) | Mengambil kolom nilai tertentu (seperti `'kapasitas'`, `'harga'`) dari array multidimensi. |
-| 3 | `array_sum()` | `functions.php` (`hitungTotalKapasitas`, `hitungRataRataHarga`) | Menjumlahkan seluruh angka dalam array (total kapasitas dan akumulasi harga). |
-| 4 | `array_filter()` | `functions.php` (`hitungRuanganTersedia`) | Menyaring elemen ruangan kerja yang berstatus 'Tersedia'. |
-| 5 | `usort()` | `functions.php` (`cariRuanganTermurah`) | Mengurutkan array berdasarkan nilai custom (mencari ruangan sewa paling terjangkau). |
+No | Fungsi Bawaan Array   | Letak File:Baris   | Tujuan / Kegunaan dalam Proyek
+1  | array_filter()        | functions.php      | Menyaring menu yang berstatus unggulan (unggulan === true) untuk ditampilkan di halaman profil usaha (index.php).
 
+2  | foreach (Array Iteration)   | index.php, katalog.php   | Melakukan pemrosesan perulangan array untuk merender daftar menu unggulan, kartu katalog, dan rincian tagihan pesanan.
+
+3  | isset() & empty() (Array Key Check)  | katalog.php  | Memeriksa keberadaan array $_POST['qty'] dan nilai input kuantitas porsi sebelum kalkulasi dilakukan.
 ---
 
-## 6. Tangkapan Layar Aplikasi
+## 7. Tangkapan Layar Aplikasi
 
 > Letakkan gambar tangkapan layar di dalam folder `screenshots/` dengan nama file `screenshot-profil.svg` dan `screenshot-katalog.svg`.
 
@@ -88,7 +118,7 @@ Aplikasi ini tidak membutuhkan database (semua data tersimpan dalam array PHP) d
 
 ---
 
-## 7. Sumber Referensi & Catatan Pemakaian AI
+## 8. Sumber Referensi & Catatan Pemakaian AI
 
 ### Sumber Referensi:
 1. Dokumentasi Resmi PHP: [https://www.php.net/manual/en/](https://www.php.net/manual/en/) (Referensi `strict_types`, `array_filter`, `array_column`, `array_sum`, `usort`, `match expression`).
@@ -96,8 +126,8 @@ Aplikasi ini tidak membutuhkan database (semua data tersimpan dalam array PHP) d
 3. Standar Penulisan Kode PHP PSR-12: [https://www.php-fig.org/psr/psr-12/](https://www.php-fig.org/psr/psr-12/).
 
 ### Catatan Pemakaian AI:
-- **Bagian yang dibantu**: AI digunakan untuk membantu merancang variasi data dummy yang realistis pada array multidimensi (`data.php`), ilustrasi visual SVG, serta penyusunan format dokumentasi README ini.
-- **Verifikasi Mandiri**: Seluruh logika PHP (`declare(strict_types=1);`, fungsi buatan sendiri bertipe, sanitasi `e()`, dan fungsi manipulasi array) telah diuji, dipahami, dan diverifikasi langsung melalui PHP 8.4 CLI untuk memastikan tidak ada *error*, *warning*, maupun *notice*. Mahasiswa memahami alur eksekusi baris per baris dan siap mendemokannya saat sesi ujian di hadapan dosen.
+- **Bagian yang dibantu**:  AI digunakan untuk merancang variasi data dummy pada array multidimensi (data.php), diagram alur kerja ASCII, serta penyusunan format dokumentasi README ini.
+- **Verifikasi Mandiri**: Seluruh logika PHP (declare(strict_types=1);, fungsi buatan sendiri bertipe, sanitasi e(), dan fungsi manipulasi array) telah diuji, dipahami, dan diverifikasi langsung melalui PHP CLI / Localhost untuk memastikan tidak ada error, warning, maupun notice. Mahasiswa memahami alur eksekusi baris per baris dan siap mendemokannya saat sesi ujian di hadapan dosen.
 
 ---
 
@@ -129,3 +159,5 @@ git commit -m "feat(render): integrasi render halaman profil simpel dan katalog 
 git add screenshots/ README.md
 git commit -m "docs: lengkapi dokumentasi teknis, tangkapan layar, dan persiapan review kode"
 ```
+
+
